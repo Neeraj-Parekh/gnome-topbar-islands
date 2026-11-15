@@ -23,7 +23,11 @@ the date/time can be collapsed into a chevron button.
 - Four layout presets, switchable without restarting the shell.
 - No daemon, no helper process, no polling. State is two small flag files.
 
-![Overlay mode](screenshots/topbar-overlay-strip.png)
+![Overlay mode: a maximized window reaches the top edge](screenshots/topbar-overlay.png)
+
+*Overlay mode with a maximized browser: the page starts at `y=0` and the two
+islands float above it. The clock in the middle belongs to the laptop's own
+notch overlay, not to this extension.*
 
 ## Requirements
 
