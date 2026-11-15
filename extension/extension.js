@@ -99,13 +99,14 @@ export default class TopBarIslandsExtension extends Extension {
 
         // Sit immediately after the date menu when both share the right box,
         // otherwise at the left edge of the right island.
+        const children = rightBox.get_children();
         const dateActor = this._dateActor;
-        if (dateActor && dateActor.get_parent() === rightBox) {
-            const index = rightBox.get_children().indexOf(dateActor);
-            rightBox.set_child_at_index(this._toggleButton, index + 1);
-        } else {
-            rightBox.set_child_at_index(this._toggleButton, 0);
-        }
+        const wanted = dateActor && dateActor.get_parent() === rightBox
+            ? children.indexOf(dateActor) + 1
+            : 0;
+
+        if (children.indexOf(this._toggleButton) !== wanted)
+            rightBox.set_child_at_index(this._toggleButton, wanted);
     }
 
     _createToggleButton() {
