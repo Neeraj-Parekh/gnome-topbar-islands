@@ -1,0 +1,8 @@
+{
+  "uuid": "topbar-islands@nyx",
+  "name": "Top Bar Islands",
+  "description": "SketchyBar-style two-island top bar with a transparent middle, white labels, an optional overlay that lets windows use the full screen height, and a collapsible date/time.",
+  "shell-version": ["45", "46", "47", "48", "49", "50"],
+  "url": "https://github.com/Neeraj-Parekh/gnome-topbar-islands",
+  "version": 1
+}

@@ -1,0 +1,110 @@
+/* Top Bar Islands - shell theme snippet.
+ *
+ * This is the extension's island styling without the extension class, for
+ * people who want the look from their GNOME Shell theme.  It styles the panel
+ * only: the overlay (windows under the bar) and the clock chevron are
+ * extension features and are not available from a theme.
+ *
+ * Append this file to a shell theme's gnome-shell.css, or import it:
+ *     @import url("islands.css");
+ */
+
+/* Top Bar Islands - SketchyBar-style menu bar split into two islands.
+ *
+ * The panel strip itself is fully transparent, so the wallpaper or the window
+ * behind it shows through the whole middle.  The left cluster (Activities and
+ * the app menu) and the right cluster (clock and status indicators) each carry
+ * their own rounded translucent surface.
+ *
+ * Items are flat inside their island until hovered, exactly like a SketchyBar
+ * item whose background.drawing is off.  No gradients, no borders, no drop
+ * shadows, no text shadows.
+ *
+ * Panel structure in GNOME Shell 45-50 (js/ui/panel.js):
+ *   #panel > #panelLeft + #panelCenter + #panelRight
+ */
+
+#panel {
+    background-color: transparent !important;
+    background-gradient-direction: none;
+    background-image: none;
+    border: none;
+    border-width: 0;
+    border-radius: 0;
+    box-shadow: none !important;
+}
+
+/* Overview, lock screen and login screen: still just the two islands. */
+#panel.unlock-screen,
+#panel.login-screen,
+#panel:overview {
+    background-color: transparent !important;
+    background-gradient-start: transparent;
+    background-gradient-end: transparent;
+    border: none;
+    box-shadow: none !important;
+}
+
+/* Island 1: left. */
+#panel #panelLeft {
+    background-color: rgba(0, 0, 0, 0.55) !important;
+    border-radius: 0 8px 8px 0;
+    margin: 0;
+    padding: 0 10px;
+    box-shadow: none !important;
+}
+
+/* Island 2: right. */
+#panel #panelRight {
+    background-color: rgba(0, 0, 0, 0.55) !important;
+    border-radius: 8px 0 0 8px;
+    margin: 0;
+    padding: 0 10px;
+    box-shadow: none !important;
+}
+
+/* The gap: nothing painted, nothing reserved. */
+#panel #panelCenter {
+    background-color: transparent !important;
+    border: none;
+    box-shadow: none !important;
+}
+
+/* Flat items: no background of their own inside an island. */
+#panel .panel-button,
+#panel .panel-button.clock-display,
+#panel .panel-button.clock-display .clock {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    border-radius: 5px;
+    color: #ffffff !important;
+    text-shadow: none;
+    box-shadow: none !important;
+}
+
+#panel .panel-button .system-status-icon,
+#panel .panel-button .app-menu-icon > StIcon,
+#panel .panel-button .popup-menu-arrow {
+    color: #ffffff !important;
+    icon-shadow: none;
+}
+
+/* Hover: SketchyBar's item background (0x40ffffff) at a softer alpha. */
+#panel .panel-button:hover,
+#panel .panel-button.clock-display:hover,
+#panel .panel-button.clock-display:hover .clock {
+    background-color: rgba(255, 255, 255, 0.14) !important;
+    box-shadow: none !important;
+}
+
+/* Open menu: the macOS selected-item wash. */
+#panel .panel-button:active,
+#panel .panel-button:checked,
+#panel .panel-button:focus,
+#panel .panel-button.clock-display:active,
+#panel .panel-button.clock-display:checked,
+#panel .panel-button.clock-display:active .clock,
+#panel .panel-button.clock-display:checked .clock {
+    background-color: rgba(255, 255, 255, 0.20) !important;
+    box-shadow: none !important;
+}

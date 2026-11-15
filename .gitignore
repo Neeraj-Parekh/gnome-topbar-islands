@@ -1,0 +1,10 @@
+# build output
+dist/
+*.zip
+
+# editors and OS noise
+*~
+*.bak
+*.swp
+.DS_Store
+__pycache__/

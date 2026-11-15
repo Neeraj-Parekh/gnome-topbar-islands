@@ -1,0 +1,107 @@
+/* SketchyBar-style menu bar, split into two floating islands.
+ *
+ * The panel strip itself is fully transparent, so the wallpaper shows through
+ * the whole middle.  The left cluster (Activities) and the right cluster
+ * (clock and status indicators) each carry their own rounded translucent
+ * surface, which is the "two-part bar" look.  The centre stays empty and
+ * unpainted for Nyx.
+ *
+ * Items are flat inside their island until hovered, exactly like a SketchyBar
+ * item whose background.drawing is off.  No gradients, no borders, no drop
+ * shadows, no text shadows.
+ *
+ * Panel structure in gnome-shell 50 (js/ui/panel.js):
+ *   #panel > #panelLeft + #panelCenter + #panelRight
+ */
+
+#panel.topbar-islands {
+    background-color: transparent !important;
+    background-gradient-direction: none;
+    background-image: none;
+    border: none;
+    border-width: 0;
+    border-radius: 0;
+    box-shadow: none !important;
+}
+
+/* Overview, lock screen and login screen: still just the two islands. */
+#panel.topbar-islands.unlock-screen,
+#panel.topbar-islands.login-screen,
+#panel.topbar-islands:overview {
+    background-color: transparent !important;
+    background-gradient-start: transparent;
+    background-gradient-end: transparent;
+    border: none;
+    box-shadow: none !important;
+}
+
+/* Island 1: left. */
+#panel.topbar-islands #panelLeft {
+    background-color: rgba(0, 0, 0, 0.55) !important;
+    border-radius: 8px;
+    margin: 3px 8px;
+    padding: 0 4px;
+    box-shadow: none !important;
+}
+
+/* Island 2: right. */
+#panel.topbar-islands #panelRight {
+    background-color: rgba(0, 0, 0, 0.55) !important;
+    border-radius: 8px;
+    margin: 3px 8px;
+    padding: 0 4px;
+    box-shadow: none !important;
+}
+
+/* The gap: nothing painted, nothing reserved. */
+#panel.topbar-islands #panelCenter {
+    background-color: transparent !important;
+    border: none;
+    box-shadow: none !important;
+}
+
+/* Flat items: no background of their own inside an island. */
+#panel.topbar-islands .panel-button,
+#panel.topbar-islands .panel-button.clock-display,
+#panel.topbar-islands .panel-button.clock-display .clock {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    border-radius: 5px;
+    color: #ffffff !important;
+    text-shadow: none;
+    box-shadow: none !important;
+}
+
+#panel.topbar-islands .panel-button .system-status-icon,
+#panel.topbar-islands .panel-button .app-menu-icon > StIcon,
+#panel.topbar-islands .panel-button .popup-menu-arrow {
+    color: #ffffff !important;
+    icon-shadow: none;
+}
+
+/* Hover: SketchyBar's item background (0x40ffffff) at a softer alpha. */
+#panel.topbar-islands .panel-button:hover,
+#panel.topbar-islands .panel-button.clock-display:hover,
+#panel.topbar-islands .panel-button.clock-display:hover .clock {
+    background-color: rgba(255, 255, 255, 0.14) !important;
+    box-shadow: none !important;
+}
+
+/* Open menu: the macOS selected-item wash. */
+#panel.topbar-islands .panel-button:active,
+#panel.topbar-islands .panel-button:checked,
+#panel.topbar-islands .panel-button:focus,
+#panel.topbar-islands .panel-button.clock-display:active,
+#panel.topbar-islands .panel-button.clock-display:checked,
+#panel.topbar-islands .panel-button.clock-display:active .clock,
+#panel.topbar-islands .panel-button.clock-display:checked .clock {
+    background-color: rgba(255, 255, 255, 0.20) !important;
+    box-shadow: none !important;
+}
+
+/* Expand/contract chevron for the date and time.  It sits beside the clock
+ * and becomes the leftmost item of the right island when the clock is
+ * collapsed. */
+#panel.topbar-islands .topbar-islands-clock-toggle {
+    padding: 0 6px;
+}
